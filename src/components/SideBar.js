@@ -81,7 +81,7 @@ function SideBar(){
                 <li className="nav-item">
                 <Link className="nav-link" to="/GenresInDb">
                         <i className="fas fa-fw fa-folder"></i>
-                        <span>Categorías</span>
+                        <span>Clasificación de productos</span>
                     </Link>
                 </li>
 
@@ -122,10 +122,14 @@ function SideBar(){
             {/*<!-- End Microdesafio 2 -->*/}
             <Switch>
                 <Route exact path="/">
-                    <ContentWrapper categorias={infoProductos.countByCategories} categoriasCant={Object.keys(infoProductos.countByCategories == undefined ? {} : infoProductos.countByCategories).length} prodsCant={infoProductos.quantity} usuariosCant={infoUsuarios.count} usuarios={infoUsuarios.users} ultProd={infoUltProductos}/>
+                    <ContentWrapper categorias={infoProductos.countByCategories} categoriasCant={Object.keys(infoProductos.countByCategories == undefined ? {} : infoProductos.countByCategories).length} prodsCant={infoProductos.quantity} usuariosCant={infoUsuarios.count} usuarios={infoUsuarios.users} ultProd={infoUltProductos} estilosVida={infoProductos.countByLifeStyles} />
                 </Route>
                 <Route path="/GenresInDb">
-                    <GenresInDb categorias={infoProductos.countByCategories}/>
+                    <div>
+                        <GenresInDb categorias={infoProductos.countByCategories} titulo={"Categorías"}/>
+                        <GenresInDb categorias={infoProductos.countByLifeStyles} titulo={"Estilos de vida"}/>
+                        <GenresInDb categorias={infoProductos.countByBrands} titulo={"Marcas"}/>
+                    </div>
                 </Route>
                 <Route path="/LastMovieInDb">
                     <LastMovieInDb ultProd={infoUltProductos} />

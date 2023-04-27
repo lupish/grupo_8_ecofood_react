@@ -1,14 +1,13 @@
 import React from "react";
 
-function GenresInDb({categorias}) {
+function GenresInDb({categorias, titulo}) {
   
   if (categorias) {
     return (
-      <div className="col-lg-6 mb-4">
         <div className="card shadow mb-4">
           <div className="card-header py-3">
             <h5 className="m-0 font-weight-bold text-gray-800">
-              Categorías
+              {titulo}
             </h5>
           </div>
           <div className="card-body">
@@ -21,15 +20,10 @@ function GenresInDb({categorias}) {
                     </div>
                   </div>
                 )
-              }) }
-  
-  
-              
-              
+              }) }              
             </div>
           </div>
         </div>
-      </div>
     );
   } else {
     return (

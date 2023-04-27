@@ -9,7 +9,7 @@ function ChartRow(props){
         <tr>
             <td>{props.nombre}</td>
             <td>{props.email}</td>
-            <td><img width="10%" src={avatar}></img></td>
+            <td><img width="50px" src={avatar}></img></td>
         </tr>
     )
         

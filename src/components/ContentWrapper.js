@@ -2,7 +2,7 @@ import React from 'react';
 import TopBar from './TopBar';
 import ContentRowTop from './ContentRowTop';
 import Footer from './Footer';
-function ContentWrapper({categorias, categoriasCant, prodsCant, usuariosCant, usuarios, ultProd}){
+function ContentWrapper({categorias, categoriasCant, prodsCant, usuariosCant, usuarios, ultProd, estilosVida}){
     return (
         <React.Fragment>
             {/*<!-- Content Wrapper -->*/}
@@ -10,7 +10,7 @@ function ContentWrapper({categorias, categoriasCant, prodsCant, usuariosCant, us
                 {/*<!-- Main Content -->*/}
                 <div id="content">
                     <TopBar />
-                    <ContentRowTop categorias={categorias} categoriasCant={categoriasCant} prodsCant={prodsCant} usuariosCant={usuariosCant} usuarios={usuarios} ultProd={ultProd}/>
+                    <ContentRowTop categorias={categorias} categoriasCant={categoriasCant} prodsCant={prodsCant} usuariosCant={usuariosCant} usuarios={usuarios} ultProd={ultProd} estilosVida={estilosVida}/>
                     <Footer />
                 </div>
             </div>    
