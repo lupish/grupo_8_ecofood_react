@@ -11,7 +11,7 @@ function SideBar(){
 
     const obtenerProductos = async () => {
         const urlBase = "http://localhost:3000";
-        const urlProductos = urlBase + "/api/products";
+        const urlProductos = urlBase + "/api/products?sortFiled=created_at&&sortType=DESC";
         console.log(urlBase)
         console.log(urlProductos)
         
@@ -19,7 +19,8 @@ function SideBar(){
         const infoAPI = await response.json()
         console.log(infoAPI)
 
-        const urlUltProd = urlBase + infoAPI.products[infoAPI.products.length - 1].detail
+        const urlUltProd = urlBase + infoAPI.products[0].detail
+        console.log(urlUltProd)
         console.log(urlUltProd)
 
         const responseUltProd = await fetch(urlUltProd)

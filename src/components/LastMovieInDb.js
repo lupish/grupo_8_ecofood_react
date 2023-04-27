@@ -4,6 +4,8 @@ import imagenFondo from '../assets/images/mandalorian.jpg';
 function LastMovieInDb({ultProd}){
     if (ultProd) {
         const avatar = "http://localhost:3000" + ultProd.img;
+        console.log(avatar)
+        console.log(avatar)
 
         return(
             <div className="col-lg-6 mb-4">
@@ -14,7 +16,11 @@ function LastMovieInDb({ultProd}){
                     <div className="card-body">
                         <h3>{ultProd.nombre} - {ultProd.marca}</h3>
                         <div className="text-center">
-                            <img className="img-fluid px-3 px-sm-4 mt-3 mb-4" style={{width: 30 +'rem'}} src={avatar} alt={ultProd.img}/>
+                            {
+                                ultProd.img ?
+                                    ultProd.img.map(elem => {return <img className="img-fluid px-3 px-sm-4 mt-3 mb-4" style={{width: 30 +'rem'}} src={"http://localhost:3000" + elem} alt={elem}/>}) 
+                                    :<p>Sin imágenes</p>
+                            }
                         </div>
                         <h6>Precio: ${ultProd.precio}</h6>
                         <p>{ultProd.descripcionLarga}</p>
