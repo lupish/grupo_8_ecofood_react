@@ -7,7 +7,7 @@ import SmallCard from './SmallCard';
 
 
 
-function ContentRowMovies({categoriasCant, prodsCant, usuariosCant}){
+function ContentRowMovies({categoriasCant, prodsCant, usuariosCant, estilosVidaCant, marcasCant}){
     let moviesInDB = {
         title: 'Productos',
         color: 'primary', 
@@ -32,8 +32,22 @@ function ContentRowMovies({categoriasCant, prodsCant, usuariosCant}){
         cuantity: usuariosCant,
         icon:'fa-user-check'
     }
+
+    let estilosVidaQty = {
+        title:'Estilos de vida' ,
+        color:'primary',
+        cuantity: estilosVidaCant,
+        icon:'fa-regular fa-heart'
+    }
+
+    let marcasQty = {
+        title:'Marcas' ,
+        color:'success',
+        cuantity: marcasCant,
+        icon:'fa-solid fa-tag'
+    }
     
-    let cartProps = [moviesInDB, totalAwards, actorsQuantity];
+    let cartProps = [moviesInDB, totalAwards, actorsQuantity, estilosVidaQty, marcasQty];
     
     if (categoriasCant && prodsCant && usuariosCant) {
     return (

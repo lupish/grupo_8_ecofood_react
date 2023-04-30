@@ -3,7 +3,7 @@ import ContentRowCenter from './ContentRowCenter';
 import ContentRowMovies from './ContentRowMovies';
 import Chart from './Chart';
 
-function ContentRowTop({categorias, categoriasCant, prodsCant, usuariosCant, usuarios, ultProd, estilosVida}){
+function ContentRowTop({categorias, categoriasCant, prodsCant, usuariosCant, usuarios, ultProd, estilosVida, estilosVidaCant, marcasCant}){
     return(
         <React.Fragment>
 				{/*<!-- Content Row Top -->*/}
@@ -13,7 +13,7 @@ function ContentRowTop({categorias, categoriasCant, prodsCant, usuariosCant, usu
 					</div>
 				
 					{/*<!-- Content Row Movies-->*/}
-					<ContentRowMovies categoriasCant={categoriasCant} prodsCant={prodsCant} usuariosCant={usuariosCant}/>
+					<ContentRowMovies categoriasCant={categoriasCant} prodsCant={prodsCant} usuariosCant={usuariosCant} estilosVidaCant={estilosVidaCant} marcasCant={marcasCant}/>
 					<ContentRowCenter categorias={categorias} ultProd={ultProd} estilosVida={estilosVida}/>
 					<Chart usuarios={usuarios}/>
 	

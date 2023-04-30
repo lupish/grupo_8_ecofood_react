@@ -8,36 +8,21 @@ import NotFound from './NotFound';
 import {Link, Route, Switch} from 'react-router-dom';
 
 function SideBar(){
-
+    
     const obtenerProductos = async () => {
         const urlBase = "http://localhost:3000";
         const urlProductos = urlBase + "/api/products?sortFiled=created_at&&sortType=DESC";
-        console.log(urlBase)
-        console.log(urlProductos)
         
         const response = await fetch(urlProductos)
         const infoAPI = await response.json()
-        console.log(infoAPI)
 
-        const urlUltProd = urlBase + infoAPI.products[0].detail
-        console.log(urlUltProd)
-        console.log(urlUltProd)
-
-        const responseUltProd = await fetch(urlUltProd)
-        const infoAPIUltProd = await responseUltProd.json()
-        console.log(infoAPIUltProd)
         setInfoProductos(infoAPI)
-        setUltInfoProductos(infoAPIUltProd)
-
-        console.log(infoAPIUltProd)
+        setUltInfoProductos(infoAPI.products[0])
     }
 
     const obtenerUsuarios = async () => {
         const response = await fetch("http://localhost:3000/api/users")
         const infoAPI = await response.json()
-        console.log(infoAPI)
-        console.log(infoAPI)
-        console.log(infoAPI)
         setInfoUsuarios(infoAPI)
     }
 
@@ -105,25 +90,9 @@ function SideBar(){
             </ul>
             {/*<!-- End of Sidebar -->*/}
 
-            {/*<!-- Microdesafio 1 -->*/}
-            {/*<!--<Route exact path="/">
-                <ContentWrapper />
-            </Route>
-            <Route path="/GenresInDb">
-                <GenresInDb />
-            </Route>
-            <Route path="/LastMovieInDb">
-                <LastMovieInDb />
-            </Route>
-            <Route path="/ContentRowMovies">
-                <ContentRowMovies />
-            </Route>*/}
-            {/*<!-- End Microdesafio 1 -->*/}
-
-            {/*<!-- End Microdesafio 2 -->*/}
             <Switch>
                 <Route exact path="/">
-                    <ContentWrapper categorias={infoProductos.countByCategories} categoriasCant={Object.keys(infoProductos.countByCategories == undefined ? {} : infoProductos.countByCategories).length} prodsCant={infoProductos.quantity} usuariosCant={infoUsuarios.count} usuarios={infoUsuarios.users} ultProd={infoUltProductos} estilosVida={infoProductos.countByLifeStyles} />
+                    <ContentWrapper categorias={infoProductos.countByCategories} categoriasCant={Object.keys(infoProductos.countByCategories == undefined ? {} : infoProductos.countByCategories).length} prodsCant={infoProductos.quantity} usuariosCant={infoUsuarios.count} usuarios={infoUsuarios.users} ultProd={infoUltProductos} estilosVida={infoProductos.countByLifeStyles} estilosVidaCant={Object.keys(infoProductos.countByLifeStyles == undefined ? {} : infoProductos.countByLifeStyles).length} marcasCant={Object.keys(infoProductos.countByBrands == undefined ? {} : infoProductos.countByBrands).length}/>
                 </Route>
                 <Route path="/GenresInDb">
                     <div>
@@ -137,12 +106,11 @@ function SideBar(){
                 </Route>
                 <Route path="/ContentRowMovies">
                     <ContentRowMovies
-                        categoriasCant={Object.keys(infoProductos.countByCategories == undefined ? {} : infoProductos.countByCategories).length} prodsCant={infoProductos.quantity} usuariosCant={infoUsuarios.count}
+                        categoriasCant={Object.keys(infoProductos.countByCategories == undefined ? {} : infoProductos.countByCategories).length} prodsCant={infoProductos.quantity} usuariosCant={infoUsuarios.count} estilosVidaCant={Object.keys(infoProductos.countByLifeStyles == undefined ? {} : infoProductos.countByLifeStyles).length} marcasCant={Object.keys(infoProductos.countByBrands == undefined ? {} : infoProductos.countByBrands).length}
                     />
                 </Route>
                 <Route component={NotFound} />
             </Switch>
-            {/*<!-- End Microdesafio 2 -->*/}
         </React.Fragment>
     )
 }
