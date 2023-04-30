@@ -1,5 +1,6 @@
 import React from 'react';
 import ChartRow from './ChartRow';
+import Loading from './Loading';
 
 function Chart ({usuarios}){
     if (usuarios) {
@@ -32,7 +33,7 @@ function Chart ({usuarios}){
         )
     } else {
         return (
-            <h4>Cargandooooo</h4>
+            <Loading />
         )
     }
 }

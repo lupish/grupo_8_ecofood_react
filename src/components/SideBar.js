@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import image from '../assets/images/ecofood_logo_prueba.png';
 import ContentWrapper from './ContentWrapper';
-import GenresInDb from './GenresInDb';
-import LastMovieInDb from './LastMovieInDb';
-import ContentRowMovies from './ContentRowMovies';
+import ProdClasifications from './ProdClasifications';
+import LastProd from './LastProd';
+import ContentMetrics from './ContentMetrics';
 import NotFound from './NotFound';
 import {Link, Route, Switch} from 'react-router-dom';
 
@@ -16,14 +16,19 @@ function SideBar(){
         const response = await fetch(urlProductos)
         const infoAPI = await response.json()
 
-        setInfoProductos(infoAPI)
-        setUltInfoProductos(infoAPI.products[0])
+        if (infoAPI.status == 200) {
+            setInfoProductos(infoAPI)
+            setUltInfoProductos(infoAPI.products[0])
+        }
     }
 
     const obtenerUsuarios = async () => {
         const response = await fetch("http://localhost:3000/api/users")
         const infoAPI = await response.json()
-        setInfoUsuarios(infoAPI)
+
+        if (infoAPI.status == 200) {
+            setInfoUsuarios(infoAPI)
+        }
     }
 
     let [infoProductos, setInfoProductos] = useState([])
@@ -65,7 +70,7 @@ function SideBar(){
 
                 {/*<!-- Nav Item - Pages -->*/}
                 <li className="nav-item">
-                <Link className="nav-link" to="/GenresInDb">
+                <Link className="nav-link" to="/ProdClasifications">
                         <i className="fas fa-fw fa-folder"></i>
                         <span>Clasificación de productos</span>
                     </Link>
@@ -73,14 +78,14 @@ function SideBar(){
 
                 {/*<!-- Nav Item - Charts -->*/}
                 <li className="nav-item">
-                    <Link className="nav-link" to="/LastMovieInDb">
+                    <Link className="nav-link" to="/LastProd">
                         <i className="fas fa-fw fa-chart-area"></i>
                         <span>Último producto</span></Link>
                 </li>
 
                 {/*<!-- Nav Item - Tables -->*/}
                 <li className="nav-item nav-link">
-                <Link className="nav-link" to="/ContentRowMovies">
+                <Link className="nav-link" to="/ContentMetrics">
                         <i className="fas fa-fw fa-table"></i>
                         <span>Métricas</span></Link>
                 </li>
@@ -92,20 +97,20 @@ function SideBar(){
 
             <Switch>
                 <Route exact path="/">
-                    <ContentWrapper categorias={infoProductos.countByCategories} categoriasCant={Object.keys(infoProductos.countByCategories == undefined ? {} : infoProductos.countByCategories).length} prodsCant={infoProductos.quantity} usuariosCant={infoUsuarios.count} usuarios={infoUsuarios.users} ultProd={infoUltProductos} estilosVida={infoProductos.countByLifeStyles} estilosVidaCant={Object.keys(infoProductos.countByLifeStyles == undefined ? {} : infoProductos.countByLifeStyles).length} marcasCant={Object.keys(infoProductos.countByBrands == undefined ? {} : infoProductos.countByBrands).length}/>
+                    <ContentWrapper categorias={infoProductos.countByCategories} categoriasCant={Object.keys(infoProductos.countByCategories == undefined ? {} : infoProductos.countByCategories).length} prodsCant={infoProductos.quantity} usuariosCant={infoUsuarios.count} usuarios={infoUsuarios.users} ultProd={infoUltProductos} estilosVida={infoProductos.countByLifeStyles} estilosVidaCant={Object.keys(infoProductos.countByLifeStyles == undefined ? {} : infoProductos.countByLifeStyles).length} marcasCant={Object.keys(infoProductos.countByBrands == undefined ? {} : infoProductos.countByBrands).length} marcas={infoProductos.countByBrands}/>
                 </Route>
-                <Route path="/GenresInDb">
+                <Route path="/ProdClasifications">
                     <div>
-                        <GenresInDb categorias={infoProductos.countByCategories} titulo={"Categorías"}/>
-                        <GenresInDb categorias={infoProductos.countByLifeStyles} titulo={"Estilos de vida"}/>
-                        <GenresInDb categorias={infoProductos.countByBrands} titulo={"Marcas"}/>
+                        <ProdClasifications categorias={infoProductos.countByCategories} titulo={"Categorías"}/>
+                        <ProdClasifications categorias={infoProductos.countByLifeStyles} titulo={"Estilos de vida"}/>
+                        <ProdClasifications categorias={infoProductos.countByBrands} titulo={"Marcas"}/>
                     </div>
                 </Route>
-                <Route path="/LastMovieInDb">
-                    <LastMovieInDb ultProd={infoUltProductos} />
+                <Route path="/LastProd">
+                    <LastProd ultProd={infoUltProductos} />
                 </Route>
-                <Route path="/ContentRowMovies">
-                    <ContentRowMovies
+                <Route path="/ContentMetrics">
+                    <ContentMetrics
                         categoriasCant={Object.keys(infoProductos.countByCategories == undefined ? {} : infoProductos.countByCategories).length} prodsCant={infoProductos.quantity} usuariosCant={infoUsuarios.count} estilosVidaCant={Object.keys(infoProductos.countByLifeStyles == undefined ? {} : infoProductos.countByLifeStyles).length} marcasCant={Object.keys(infoProductos.countByBrands == undefined ? {} : infoProductos.countByBrands).length}
                     />
                 </Route>

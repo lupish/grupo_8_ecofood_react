@@ -1,6 +1,7 @@
 import React from "react";
+import Loading from './Loading';
 
-function GenresInDb({categorias, titulo}) {
+function ProdClasifications({categorias, titulo}) {
   
   if (categorias) {
     return (
@@ -27,11 +28,11 @@ function GenresInDb({categorias, titulo}) {
     );
   } else {
     return (
-      <h4>Cargandooooo</h4>
+      <Loading />
     )
   }
   
   
 }
 
-export default GenresInDb;
+export default ProdClasifications;

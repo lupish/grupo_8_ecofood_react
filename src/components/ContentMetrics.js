@@ -1,5 +1,6 @@
 import React from 'react';
 import SmallCard from './SmallCard';
+import Loading from './Loading';
 
 /*  Cada set de datos es un objeto literal */
 
@@ -7,8 +8,10 @@ import SmallCard from './SmallCard';
 
 
 
-function ContentRowMovies({categoriasCant, prodsCant, usuariosCant, estilosVidaCant, marcasCant}){
-    let moviesInDB = {
+function ContentMetrics({categoriasCant, prodsCant, usuariosCant, estilosVidaCant, marcasCant}){
+    
+    
+    let prodsQty = {
         title: 'Productos',
         color: 'primary', 
         cuantity: prodsCant,
@@ -17,7 +20,7 @@ function ContentRowMovies({categoriasCant, prodsCant, usuariosCant, estilosVidaC
     
     /* <!-- Total awards --> */
     
-    let totalAwards = {
+    let categoriasQty = {
         title:' Categorías', 
         color:'success', 
         cuantity: categoriasCant,
@@ -26,7 +29,7 @@ function ContentRowMovies({categoriasCant, prodsCant, usuariosCant, estilosVidaC
     
     /* <!-- Actors quantity --> */
     
-    let actorsQuantity = {
+    let usuariosQty = {
         title:'Usuarios' ,
         color:'warning',
         cuantity: usuariosCant,
@@ -47,9 +50,9 @@ function ContentRowMovies({categoriasCant, prodsCant, usuariosCant, estilosVidaC
         icon:'fa-solid fa-tag'
     }
     
-    let cartProps = [moviesInDB, totalAwards, actorsQuantity, estilosVidaQty, marcasQty];
+    let cartProps = [prodsQty, categoriasQty, usuariosQty, estilosVidaQty, marcasQty];
     
-    if (categoriasCant && prodsCant && usuariosCant) {
+    if (categoriasCant && prodsCant && usuariosCant && estilosVidaCant &&  marcasCant) {
     return (
     
         <div className="row">
@@ -64,9 +67,9 @@ function ContentRowMovies({categoriasCant, prodsCant, usuariosCant, estilosVidaC
     )}
     else {
         return (
-            <h4>Cargandooooo</h4>
+            <Loading />
         )
     }
 }
 
-export default ContentRowMovies;
+export default ContentMetrics;

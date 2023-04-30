@@ -1,4 +1,5 @@
 import React from 'react';
+import Loading from './Loading';
 
 function TopBar({usuarios}){
 	if (usuarios) {
@@ -54,7 +55,7 @@ function TopBar({usuarios}){
 		)
 	} else {
 		return (
-            <h4>Cargandooooo</h4>
+            <Loading />
         )
 	}
     

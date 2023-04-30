@@ -1,19 +1,20 @@
 import React from 'react';
-import LastMovieInDb from './LastMovieInDb';
-import GenresInDb from './GenresInDb';
+import LastProd from './LastProd';
+import ProdClasifications from './ProdClasifications';
 
-function ContentRowCenter({categorias, ultProd, estilosVida}){
+function ContentRowCenter({categorias, ultProd, estilosVida, marcas}){
     return (
         <div className="row">
             
             {/*<!-- Last Movie in DB -->*/}
-            <LastMovieInDb ultProd={ultProd} />
+            <LastProd ultProd={ultProd} />
             {/*<!-- End content row last movie in Data Base -->*/}
 
             {/*<!-- Genres in DB -->*/}
             <div className="col-lg-6 mb-4">
-                <GenresInDb categorias={categorias} titulo={"Categorías"}/>
-                <GenresInDb categorias={estilosVida} titulo={"Estilos de vida"}/>
+                <ProdClasifications categorias={categorias} titulo={"Categorías"}/>
+                <ProdClasifications categorias={estilosVida} titulo={"Estilos de vida"}/>
+                <ProdClasifications categorias={marcas} titulo={"Marcas"}/>
             </div>
 
         </div>

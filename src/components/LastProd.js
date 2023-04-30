@@ -1,9 +1,8 @@
 import React from 'react';
-import imagenFondo from '../assets/images/mandalorian.jpg';
+import Loading from './Loading';
 
-function LastMovieInDb({ultProd}){
+function LastProd({ultProd}){
     if (ultProd) {
-
         return(
             <div className="col-lg-6 mb-4">
                 <div className="card shadow mb-4">
@@ -37,9 +36,9 @@ function LastMovieInDb({ultProd}){
         )
     } else {
         return (
-            <h4>Cargandooooo</h4>
+            <Loading />
         )
     }
 }
 
-export default LastMovieInDb;
+export default LastProd;
