@@ -16,7 +16,7 @@ function SideBar(){
         const response = await fetch(urlProductos)
         const infoAPI = await response.json()
 
-        if (infoAPI.status == 200) {
+        if (infoAPI.status === 200) {
             setInfoProductos(infoAPI)
             setUltInfoProductos(infoAPI.products[0])
         }
@@ -26,7 +26,7 @@ function SideBar(){
         const response = await fetch("http://localhost:3000/api/users")
         const infoAPI = await response.json()
 
-        if (infoAPI.status == 200) {
+        if (infoAPI.status === 200) {
             setInfoUsuarios(infoAPI)
         }
     }
@@ -97,7 +97,7 @@ function SideBar(){
 
             <Switch>
                 <Route exact path="/">
-                    <ContentWrapper categorias={infoProductos.countByCategories} categoriasCant={Object.keys(infoProductos.countByCategories == undefined ? {} : infoProductos.countByCategories).length} prodsCant={infoProductos.quantity} usuariosCant={infoUsuarios.count} usuarios={infoUsuarios.users} ultProd={infoUltProductos} estilosVida={infoProductos.countByLifeStyles} estilosVidaCant={Object.keys(infoProductos.countByLifeStyles == undefined ? {} : infoProductos.countByLifeStyles).length} marcasCant={Object.keys(infoProductos.countByBrands == undefined ? {} : infoProductos.countByBrands).length} marcas={infoProductos.countByBrands}/>
+                    <ContentWrapper categorias={infoProductos.countByCategories} categoriasCant={Object.keys(infoProductos.countByCategories === undefined ? {} : infoProductos.countByCategories).length} prodsCant={infoProductos.quantity} usuariosCant={infoUsuarios.count} usuarios={infoUsuarios.users} ultProd={infoUltProductos} estilosVida={infoProductos.countByLifeStyles} estilosVidaCant={Object.keys(infoProductos.countByLifeStyles === undefined ? {} : infoProductos.countByLifeStyles).length} marcasCant={Object.keys(infoProductos.countByBrands === undefined ? {} : infoProductos.countByBrands).length} marcas={infoProductos.countByBrands}/>
                 </Route>
                 <Route path="/ProdClasifications">
                     <div>
@@ -111,7 +111,7 @@ function SideBar(){
                 </Route>
                 <Route path="/ContentMetrics">
                     <ContentMetrics
-                        categoriasCant={Object.keys(infoProductos.countByCategories == undefined ? {} : infoProductos.countByCategories).length} prodsCant={infoProductos.quantity} usuariosCant={infoUsuarios.count} estilosVidaCant={Object.keys(infoProductos.countByLifeStyles == undefined ? {} : infoProductos.countByLifeStyles).length} marcasCant={Object.keys(infoProductos.countByBrands == undefined ? {} : infoProductos.countByBrands).length}
+                        categoriasCant={Object.keys(infoProductos.countByCategories === undefined ? {} : infoProductos.countByCategories).length} prodsCant={infoProductos.quantity} usuariosCant={infoUsuarios.count} estilosVidaCant={Object.keys(infoProductos.countByLifeStyles === undefined ? {} : infoProductos.countByLifeStyles).length} marcasCant={Object.keys(infoProductos.countByBrands === undefined ? {} : infoProductos.countByBrands).length}
                     />
                 </Route>
                 <Route component={NotFound} />
