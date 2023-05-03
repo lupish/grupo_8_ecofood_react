@@ -97,7 +97,7 @@ function SideBar(){
 
             <Switch>
                 <Route exact path="/">
-                    <ContentWrapper categorias={infoProductos.countByCategories} categoriasCant={Object.keys(infoProductos.countByCategories === undefined ? {} : infoProductos.countByCategories).length} prodsCant={infoProductos.quantity} usuariosCant={infoUsuarios.count} usuarios={infoUsuarios.users} ultProd={infoUltProductos} estilosVida={infoProductos.countByLifeStyles} estilosVidaCant={Object.keys(infoProductos.countByLifeStyles === undefined ? {} : infoProductos.countByLifeStyles).length} marcasCant={Object.keys(infoProductos.countByBrands === undefined ? {} : infoProductos.countByBrands).length} marcas={infoProductos.countByBrands}/>
+                    <ContentWrapper productos={infoProductos.products} categorias={infoProductos.countByCategories} categoriasCant={Object.keys(infoProductos.countByCategories === undefined ? {} : infoProductos.countByCategories).length} prodsCant={infoProductos.quantity} usuariosCant={infoUsuarios.count} usuarios={infoUsuarios.users} ultProd={infoUltProductos} estilosVida={infoProductos.countByLifeStyles} estilosVidaCant={Object.keys(infoProductos.countByLifeStyles === undefined ? {} : infoProductos.countByLifeStyles).length} marcasCant={Object.keys(infoProductos.countByBrands === undefined ? {} : infoProductos.countByBrands).length} marcas={infoProductos.countByBrands}/>
                 </Route>
                 <Route path="/ProdClasifications">
                     <div>
