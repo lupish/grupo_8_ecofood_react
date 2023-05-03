@@ -8,26 +8,22 @@ import Loading from './Loading';
 
 
 
-function ContentMetrics({categoriasCant, prodsCant, usuariosCant, estilosVidaCant, marcasCant}){
+function ContentMetrics({categoriasCant, prodsCant, usuariosCant, estilosVidaCant, marcasCant, ventasCant}){
     
     
     let prodsQty = {
         title: 'Productos',
         color: 'primary', 
         cuantity: prodsCant,
-        icon: 'fa-clipboard-list'
+        icon: 'fa-award'
     }
-    
-    /* <!-- Total awards --> */
     
     let categoriasQty = {
         title:' Categorías', 
         color:'success', 
         cuantity: categoriasCant,
-        icon:'fa-award'
+        icon:'fa-solid fa-filter'
     }
-    
-    /* <!-- Actors quantity --> */
     
     let usuariosQty = {
         title:'Usuarios' ,
@@ -49,8 +45,15 @@ function ContentMetrics({categoriasCant, prodsCant, usuariosCant, estilosVidaCan
         cuantity: marcasCant,
         icon:'fa-solid fa-tag'
     }
+
+    let ventasQty = {
+        title:' Ventas', 
+        color:'success', 
+        cuantity: ventasCant,
+        icon:'fa-clipboard-list'
+    }
     
-    let cartProps = [prodsQty, categoriasQty, usuariosQty, estilosVidaQty, marcasQty];
+    let cartProps = [prodsQty, ventasQty, usuariosQty, estilosVidaQty, categoriasQty, marcasQty];
     
     if (categoriasCant && prodsCant && usuariosCant && estilosVidaCant &&  marcasCant) {
     return (

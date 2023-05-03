@@ -4,6 +4,9 @@ import ContentWrapper from './ContentWrapper';
 import ProdClasifications from './ProdClasifications';
 import LastProd from './LastProd';
 import ContentMetrics from './ContentMetrics';
+import ChartProds from './ChartProds';
+import Chart from './Chart';
+import ChartVentas from './ChartVentas'
 import NotFound from './NotFound';
 import {Link, Route, Switch} from 'react-router-dom';
 
@@ -31,13 +34,24 @@ function SideBar(){
         }
     }
 
+    const obtenerVentas = async() => {
+        const response = await fetch("http://localhost:3000/api/products/purchase/listSales");
+        const infoAPI = await response.json()
+
+        if (infoAPI.status == 200) {
+            setInfoVentas(infoAPI)
+        }
+    }
+
     let [infoProductos, setInfoProductos] = useState([])
     let [infoUltProductos, setUltInfoProductos] = useState([])
     let [infoUsuarios, setInfoUsuarios] = useState([])
-    
+    let [infoVentas, setInfoVentas] = useState([])
+
     useEffect(() => {
         obtenerProductos()
         obtenerUsuarios()
+        obtenerVentas()
     }, [])
 
     return(
@@ -90,6 +104,29 @@ function SideBar(){
                         <span>Métricas</span></Link>
                 </li>
 
+                {/*<!-- Nav Item - Listado de usuarios -->*/}
+                <li className="nav-item">
+                <Link className="nav-link" to="/Chart">
+                    <i className="fas fa-fw fa-table"></i>
+                    <span>Listado de usuarios</span></Link>
+                </li>
+
+                {/*<!-- Nav Item - Listado de productos -->*/}
+                <li className="nav-item">
+                <Link className="nav-link" to="/ChartProds">
+                    <i className="fas fa-fw fa-table"></i>
+                    <span>Listado de productos</span></Link>
+                </li>
+
+                {/*<!-- Nav Item - Listado de ventas -->*/}
+                <li className="nav-item">
+                <Link className="nav-link" to="/ChartVentas">
+                    <i className="fas fa-fw fa-table"></i>
+                    <span>Listado de ventas</span></Link>
+                </li>
+
+                
+
                 {/*<!-- Divider -->*/}
                 <hr className="sidebar-divider d-none d-md-block"/>
             </ul>
@@ -97,7 +134,7 @@ function SideBar(){
 
             <Switch>
                 <Route exact path="/">
-                    <ContentWrapper productos={infoProductos.products} categorias={infoProductos.countByCategories} categoriasCant={Object.keys(infoProductos.countByCategories === undefined ? {} : infoProductos.countByCategories).length} prodsCant={infoProductos.quantity} usuariosCant={infoUsuarios.count} usuarios={infoUsuarios.users} ultProd={infoUltProductos} estilosVida={infoProductos.countByLifeStyles} estilosVidaCant={Object.keys(infoProductos.countByLifeStyles === undefined ? {} : infoProductos.countByLifeStyles).length} marcasCant={Object.keys(infoProductos.countByBrands === undefined ? {} : infoProductos.countByBrands).length} marcas={infoProductos.countByBrands}/>
+                    <ContentWrapper productos={infoProductos.products} categorias={infoProductos.countByCategories} categoriasCant={Object.keys(infoProductos.countByCategories === undefined ? {} : infoProductos.countByCategories).length} prodsCant={infoProductos.quantity} usuariosCant={infoUsuarios.count} usuarios={infoUsuarios.users} ultProd={infoUltProductos} estilosVida={infoProductos.countByLifeStyles} estilosVidaCant={Object.keys(infoProductos.countByLifeStyles === undefined ? {} : infoProductos.countByLifeStyles).length} marcasCant={Object.keys(infoProductos.countByBrands === undefined ? {} : infoProductos.countByBrands).length} marcas={infoProductos.countByBrands} ventasCant={infoVentas.count} />
                 </Route>
                 <Route path="/ProdClasifications">
                     <div>
@@ -111,8 +148,17 @@ function SideBar(){
                 </Route>
                 <Route path="/ContentMetrics">
                     <ContentMetrics
-                        categoriasCant={Object.keys(infoProductos.countByCategories === undefined ? {} : infoProductos.countByCategories).length} prodsCant={infoProductos.quantity} usuariosCant={infoUsuarios.count} estilosVidaCant={Object.keys(infoProductos.countByLifeStyles === undefined ? {} : infoProductos.countByLifeStyles).length} marcasCant={Object.keys(infoProductos.countByBrands === undefined ? {} : infoProductos.countByBrands).length}
+                        categoriasCant={Object.keys(infoProductos.countByCategories === undefined ? {} : infoProductos.countByCategories).length} prodsCant={infoProductos.quantity} usuariosCant={infoUsuarios.count} estilosVidaCant={Object.keys(infoProductos.countByLifeStyles === undefined ? {} : infoProductos.countByLifeStyles).length} marcasCant={Object.keys(infoProductos.countByBrands === undefined ? {} : infoProductos.countByBrands).length} ventasCant={infoVentas.count}
                     />
+                </Route>
+                <Route path="/Chart">
+                    <Chart usuarios={infoUsuarios.users} />
+                </Route>
+                <Route path="/ChartProds">
+                    <ChartProds productos={infoProductos.products} />
+                </Route>
+                <Route path="/ChartVentas">
+                    <ChartVentas ventas={infoVentas.data} />
                 </Route>
                 <Route component={NotFound} />
             </Switch>
